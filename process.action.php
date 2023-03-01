@@ -14,7 +14,8 @@ file_put_contents("setting.ini", $configData);
 
 # 로그 저장
 $date = date('Y-m-d');
-file_put_contents("logs/{$date}.log", date('[Y-m-d H:i:s] =>').print_r($_POST,1)."\n\n",FILE_APPEND);
+#logWriter("{$date}.log",$_POST,'json');
+logWriter("{$date}.log",$_POST);
 
 # 출력테스트
 #$home = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];

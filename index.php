@@ -26,7 +26,7 @@ $titleComment ="신규로 뭔가 만들때 사용.";
 
 # 폼-항목
 #echo "<xmp>".print_r(json_encode($setting),1)."</xmp>";
-foreach($setting as $idx => $value) if(strpos($value,",")!==false) $setting[$idx]=explode(",",$value);
+#foreach($setting as $idx => $value) if(strpos($value,",")!==false) $setting[$idx]=explode(",",$value);
 #echo "<xmp>".print_r($setting,1)."</xmp>";
 
 # 폼설정 

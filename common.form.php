@@ -45,7 +45,16 @@ CLASS form{
 		</v-list-item>
 		";
 	}
-	static function checkbox($title,$key,$option,$value=""){
+	static function checkbox($title,$key,$option,$value=""){		
+		# 최초 멀티 선택 불가 방지
+		global $setting;
+		if(empty($setting[$key]) || !is_array($setting[$key]))
+		{
+			$tmp = $setting[$key];
+			unset($setting[$key]);
+			$setting[$key][] = $tmp;
+			#echo "<xmp>".print_r($setting[$key],1)."</xmp>";exit;			
+		}
 		#foreach($option['arrOption'] as $verK => $verT) $arrOption .= "<label><input type='checkbox' name='{$key}[]' value='$verK' ".(($value==$verK)?"checked":"").">$verT</label>";
 		foreach($option['arrOption'] as $verK => $verT) $arrOption .= "<v-checkbox label='$verT' v-model='formVal.$key' value='{$verK}' name='{$key}[]'></v-checkbox>";
 		if(0);

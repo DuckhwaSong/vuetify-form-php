@@ -222,7 +222,14 @@ function logFiler($filename,$date=""){
 	if(!empty($date) && $objData[$date]) return $objData[$date];
 	return $objData;
 }
-
+function logWriter($filename,$data,$type=''){
+	if(!is_dir(__LOG_DIR__)) {
+		@mkdir(__LOG_DIR__, 0777);
+		@chmod(__LOG_DIR__, 0777);
+	}
+	if($type=='json') return file_put_contents(__LOG_DIR__.$filename, json_encode(['date'=>date('Y-m-d H:i:s'),'data'=>$data],JSON_UNESCAPED_UNICODE)."\n\n",FILE_APPEND);
+	else return file_put_contents(__LOG_DIR__.$filename, date('[Y-m-d H:i:s] =>').print_r($data,1)."\n\n",FILE_APPEND);
+}
 
 /*
 # 검색해서 카피하는 소스 퍼옴 https://doolyit.tistory.com/203

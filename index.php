@@ -25,8 +25,7 @@ $title = "*신작업용*";
 $titleComment ="신규로 뭔가 만들때 사용.";
 
 # 폼-항목
-#echo "<xmp>".print_r(json_encode($setting),1)."</xmp>";
-#foreach($setting as $idx => $value) if(strpos($value,",")!==false) $setting[$idx]=explode(",",$value);
+foreach($setting as $idx => $value) if(strpos($value,",")!==false) $setting[$idx]=explode(",",$value);
 #echo "<xmp>".print_r($setting,1)."</xmp>";
 
 # 폼설정 
@@ -224,8 +223,8 @@ $Vue3OptionsAPI= "
 	const app = createApp(vueCustom);
 	app.use(vuetify).mount('#app');
 ";
-$jScript .= $Vue3OptionsAPI;
-$jScript .= $addJScript;
+$vueJScript = $Vue3OptionsAPI;
+$jScript .= $vueJScript;
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html class="supernova"><head>
@@ -248,10 +247,10 @@ $jScript .= $addJScript;
   crossorigin="anonymous"></script>
 
 	<!--	vue3 + vuetify  사용	-->
-	<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+	<script src="./asset/js/vue.3.2.45.prod.js"></script>
 	<link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet"/>
-	<link href="https://cdn.jsdelivr.net/npm/vuetify@3.0.5/dist/vuetify.min.css" rel="stylesheet"/>
-	<script src="https://cdn.jsdelivr.net/npm/vuetify@3.0.5/dist/vuetify.min.js"></script>
+	<link href="./asset/vuetify/vuetify.min.css" rel="stylesheet"/>
+	<script src="./asset/vuetify/vuetify.min.js"></script>
 	<!--	vue3 + vuetify  사용	-->
 
 </head>

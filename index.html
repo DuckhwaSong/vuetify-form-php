@@ -1,0 +1,73 @@
+<html>
+<body>
+  <div id="app">
+    <my-component msg="test"></my-component>
+    <my-helloworld msg="test"></my-helloworld>
+    <my-test></my-test>
+
+  </div>
+  <script src="https://unpkg.com/vue@3.2.47/dist/vue.global.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue3-sfc-loader/dist/vue3-sfc-loader.js"></script>
+
+  <script type="text/javascript">
+   /* const { ref, createApp } = Vue;
+  
+    let formVal=ref({});
+    let vueCustom={
+      setup() {
+        //alert('setup');
+        const count = ref(0);
+        const increment = () => {
+          count.value++
+        };
+        const userName= ref(0);
+        return {formVal};
+      },
+      components:{
+        'my-component': httpVueLoader('./my-component.html')
+      }
+    };
+    const app = createApp(vueCustom);
+    app.mount('#app');*/
+      </script>
+
+
+  <script>
+
+    const options = {
+      moduleCache: {
+        vue: Vue
+      },
+      async getFile(url) {
+        
+        const res = await fetch(url);
+        if ( !res.ok )
+          throw Object.assign(new Error(res.statusText + ' ' + url), { res });
+        return {
+          getContentData: asBinary => asBinary ? res.arrayBuffer() : res.text(),
+        }
+      },
+      addStyle(textContent) {
+
+        const style = Object.assign(document.createElement('style'), { textContent });
+        const ref = document.head.getElementsByTagName('style')[0] || null;
+        document.head.insertBefore(style, ref);
+      },
+    }
+
+    const { loadModule } = window['vue3-sfc-loader'];
+
+    const app = Vue.createApp({
+      components: {
+        //'my-component': Vue.defineAsyncComponent( () => loadModule('./myComponent.vue', options) )
+        'my-component': Vue.defineAsyncComponent( () => loadModule('./components/myComponent.vue', options) )
+        ,'my-helloworld': Vue.defineAsyncComponent( () => loadModule('./components/helloWorld.vue', options) )
+        ,'my-test': Vue.defineAsyncComponent( () => loadModule('./components/App_TemplateSyntax.vue', options) )
+      }
+    });
+
+    app.mount('#app');
+
+  </script>
+</body>
+</html>
